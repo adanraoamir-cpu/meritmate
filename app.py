@@ -157,4 +157,4 @@ if st.button("✨ Calculate My Merit", use_container_width=True):
         )
 
 st.divider()
-st.caption("Made by Adin · MeritMate")
+st.caption("Made by Adan · MeritMate")
