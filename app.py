@@ -1,5 +1,4 @@
 
-
 import streamlit as st
 
 st.set_page_config(
@@ -15,6 +14,16 @@ st.write("Plan your university admission journey.")
 st.divider()
 
 st.header("📊 Calculate Your Aggregate")
+
+university = st.selectbox(
+    "Choose your university",
+    ["NUST", "FAST-NUCES", "Other (sample calculation)"]
+)
+
+st.info(
+    "This version uses a sample formula for demonstration. "
+    "University-specific formulas will be added after verification."
+)
 
 st.write("Enter your marks below.")
 
@@ -61,8 +70,10 @@ test_total = st.number_input(
 )
 
 if st.button("Calculate My Aggregate"):
-    if matric > matric_total or inter > inter_total:
-        st.error("Obtained marks cannot exceed total marks.")
+    if matric > matric_total:
+        st.error("Matric marks cannot exceed total marks.")
+    elif inter > inter_total:
+        st.error("Intermediate marks cannot exceed total marks.")
     elif test > test_total:
         st.error("Entry test marks cannot exceed total marks.")
     else:
@@ -76,13 +87,13 @@ if st.button("Calculate My Aggregate"):
             + test_pct * 0.50
         )
 
-        st.success(
-            f"Your sample aggregate is {aggregate:.2f}%"
-        )
+        st.success(f"Sample aggregate: {aggregate:.2f}%")
         st.caption(
-            "Sample formula only: confirm the official "
-            "weightage for your chosen university."
+            f"Selected university: {university}. "
+            "This is not an official admission aggregate."
         )
 
 st.divider()
-st.caption("Made by Adan | MeritMate")
+st.caption("Made by Adan  | MeritMate")
+
+
